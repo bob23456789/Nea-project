@@ -19,7 +19,7 @@ namespace Nea_project
 
    class tank
    {
-        //this si for luke 
+        
 
    }
     
@@ -54,6 +54,5 @@ namespace Nea_project
         
     }
     
-    }
-
 }
+
