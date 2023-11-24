@@ -19,9 +19,16 @@ namespace Nea_project
 
    class tank
    {
-        
+        private int _x; // cords
+        public int x { get { return _x; } }
+        private int _y;// y postion 
+        public int Y { get { return _y; } }
+        private int _armour;// y postion 
+        public int armour { get { return _armour; } }
+        private int _acc;// y postion 
+        public int acc { get { return _acc; } }
 
-   }
+    }
     
     
     class tile //basic class for the tiles 
