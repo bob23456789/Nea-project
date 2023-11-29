@@ -1,15 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Nea_project
 {
     public class Game1 : Game
     {
         Texture2D squareTexture;
-        double gamestate = 1.5;
-
+        Texture2D menuTexture;
+        double gamestate = 1;
+        string menuTitle = "War On perliculum \n Prime";
+        string Line = "";
+        //int[,,] tilemap = new int[16, 11, 160]; // x,y,type tilemap  
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         List<tile> tiles = new List<tile>();
@@ -23,27 +30,56 @@ namespace Nea_project
 
         protected override void Initialize()
         {
-            
-            int row = 0;
-            int col = 0;    
-            // TODO: Add your initialization logic here
-            for (int i = -1; i < 10; i++)
+
+            if (gamestate == 1.5)//if game state i playing game state
             {
-                for (int j = 0; j < 10; j++)
+
+                int row = 0;
+                int col = 0;
+                int rcount = 0;// counts the rows for the stream reading 
+                StreamReader read = new StreamReader("tilemap.txt");// reads from basic map text file 
+                string readrow = "";
+                char[,] tilemaptype = new char[16, 11];
+                for (int e = 0; e < 11; e++)
                 {
-                    row = i*55; col = j*55;
-                    tile newtile = new tile(0, 0, 0, 0, row, col);// creates new tile object
-                    tiles.Add(newtile);// adds it to list 
+                    
+                    readrow = read.ReadLine();//reads text file int
+                    char[] stringtochar = readrow.ToCharArray(); // converts read row into char array
+                    for (int i = 0; i < stringtochar.Length; i++)
+                    {
+                        tilemaptype[0,rcount] = stringtochar[i];// put chararray into  tilemap typea array 
+                    }
+                        rcount++;// counts whic row the read is on 
                 }
+                // TODO: Add your initialization logic here
+                for (int i = -1; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        row = i * 55; col = j * 55;
+                        tile newtile = new tile(0, 0, 0, 0, row, col);// creates new tile object
+                        tiles.Add(newtile);// adds it to list 
+                    }
+                }
+
             }
             base.Initialize();
+
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            squareTexture = Content.Load<Texture2D>("grass");//loads grass 
-
+            if(gamestate == 1.5)
+            {
+                squareTexture = Content.Load<Texture2D>("grass");//loads grass 
+            }
+            if(gamestate == 1)
+            {
+                squareTexture = Content.Load<Texture2D>("menuscreen");
+            }
+            
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -58,13 +94,23 @@ namespace Nea_project
 
         protected override void Draw(GameTime gameTime)
         {
-
+            GraphicsDevice.Clear(Color.CornflowerBlue);//creats bit where grpahics goes
+            int col = -55;
+            int row = 0;
+            if (gamestate == 1)// menu screen  // y = 550 x = 825 area = 453750 pixles 
+            {
+                _spriteBatch.Begin();
+                _spriteBatch.Draw(squareTexture, new Vector2(row, col), Color.White);
+                //SpriteFont defaultFont = Content.Load<SpriteFont>("DefaultFont");
+                //Vector2 titlePosition = new Vector2((GraphicsDevice.Viewport.Width - defaultFont.MeasureString(menuTitle).X) / 2, GraphicsDevice.Viewport.Height / 4);
+                //_spriteBatch.DrawString(defaultFont, menuTitle, titlePosition, Color.White);
+                _spriteBatch.End();
+            }
 
             if(gamestate == 1.5 )
             {
-                int col = -55;
-                int row = 0;
-                GraphicsDevice.Clear(Color.CornflowerBlue);//sets abck gorund to vue
+               
+                
                 _spriteBatch.Begin();// begins draws  in the srpites 
                 for (int i = 0; i < 10; i++)//gennnerates grass tiles in grid
                 {

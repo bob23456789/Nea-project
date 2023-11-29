@@ -23,11 +23,20 @@ namespace Nea_project
         public int x { get { return _x; } }
         private int _y;// y postion 
         public int Y { get { return _y; } }
-        private int _armour;// y postion 
+        private int _armour;// armour value of tank  
         public int armour { get { return _armour; } }
-        private int _acc;// y postion 
+        private int _acc;// accuracy of tank 
         public int acc { get { return _acc; } }
-
+        private int _speed;// accuracy of tank 
+        public int speed { get { return _speed; } }
+        private int _attackpower;// accuracy of tank 
+        public int attackpower { get { return _attackpower; } }
+        private int _range;// hwo far the gun can shoot
+        public int range { get { return _range; } }
+        private int _movementactionpoints;// how many movement action it can do 
+        public int movactpoints { get { return _movementactionpoints; } }
+        private bool _havefired;// how many movement action it can do 
+        public bool havefired { get { return _havefired; } }
     }
     
     
