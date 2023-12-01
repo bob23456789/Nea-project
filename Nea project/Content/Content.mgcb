@@ -37,3 +37,8 @@
 /processorParam:TextureFormat=Color
 /build:menuscreen.jpg
 
+#begin Monalisa Serif.otf
+/importer:
+/processor:
+/build:Monalisa Serif.otf
+

@@ -52,13 +52,15 @@ namespace Nea_project
                         rcount++;// counts whic row the read is on 
                 }
                 // TODO: Add your initialization logic here
+                rcount = 0;
                 for (int i = -1; i < 10; i++)
                 {
                     for (int j = 0; j < 10; j++)
                     {
                         row = i * 55; col = j * 55;
-                        tile newtile = new tile(0, 0, 0, 0, row, col);// creates new tile object
+                        tile newtile = new tile(tilemaptype[rcount,i], 0, 0, 0, row, col);// creates new tile object
                         tiles.Add(newtile);// adds it to list 
+                        rcount++;
                     }
                 }
 
@@ -94,16 +96,16 @@ namespace Nea_project
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);//creats bit where grpahics goes
+            GraphicsDevice.Clear(Color.Black);//creats bit where grpahics goes
             int col = -55;
             int row = 0;
             if (gamestate == 1)// menu screen  // y = 550 x = 825 area = 453750 pixles 
             {
                 _spriteBatch.Begin();
                 _spriteBatch.Draw(squareTexture, new Vector2(row, col), Color.White);
-                //SpriteFont defaultFont = Content.Load<SpriteFont>("DefaultFont");
-                //Vector2 titlePosition = new Vector2((GraphicsDevice.Viewport.Width - defaultFont.MeasureString(menuTitle).X) / 2, GraphicsDevice.Viewport.Height / 4);
-                //_spriteBatch.DrawString(defaultFont, menuTitle, titlePosition, Color.White);
+                SpriteFont defaultFont = Content.Load<SpriteFont>("Mnalisa_Serif");
+                Vector2 titlePosition = new Vector2((GraphicsDevice.Viewport.Width - defaultFont.MeasureString(menuTitle).X) / 2, GraphicsDevice.Viewport.Height / 4);
+                _spriteBatch.DrawString(defaultFont, menuTitle, titlePosition, Color.White);
                 _spriteBatch.End();
             }
 
