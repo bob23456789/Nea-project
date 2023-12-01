@@ -25,6 +25,13 @@
 /processorParam:TextureFormat=Color
 /build:../../../sprites/grass.png;grass.png
 
+#begin Font.spritefont
+/importer:FontDescriptionImporter
+/processor:LocalizedFontProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font.spritefont
+
 #begin menuscreen.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -36,9 +43,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:menuscreen.jpg
-
-#begin Monalisa Serif.otf
-/importer:
-/processor:
-/build:Monalisa Serif.otf
 

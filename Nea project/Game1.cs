@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Nea_project
 {
@@ -14,13 +15,14 @@ namespace Nea_project
         Texture2D squareTexture;
         Texture2D menuTexture;
         double gamestate = 1;
-        string menuTitle = "War On perliculum \n Prime";
+        string menuTitle = "War On Perliculum \n Prime";
         string Line = "";
         //int[,,] tilemap = new int[16, 11, 160]; // x,y,type tilemap  
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private SpriteFont myfontyfont; 
         List<tile> tiles = new List<tile>();
-
+        //veotr middle point make object thignhere wiht artibute
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -103,9 +105,10 @@ namespace Nea_project
             {
                 _spriteBatch.Begin();
                 _spriteBatch.Draw(squareTexture, new Vector2(row, col), Color.White);
-                SpriteFont defaultFont = Content.Load<SpriteFont>("Mnalisa_Serif");
-                Vector2 titlePosition = new Vector2((GraphicsDevice.Viewport.Width - defaultFont.MeasureString(menuTitle).X) / 2, GraphicsDevice.Viewport.Height / 4);
-                _spriteBatch.DrawString(defaultFont, menuTitle, titlePosition, Color.White);
+                Vector2 textMiddlePoint = myfontyfont.MeasureString(menuTitle) / 2;
+                // Places text in center of the screen
+                Vector2 position = new Vector2(Window.ClientBounds.Width / 2,Window.ClientBounds.Height / 2);
+               _spriteBatch.DrawString(myfontyfont,menuTitle, position, Color.White, 0, textMiddlePoint, 1.0f, SpriteEffects.None, 0.5f);
                 _spriteBatch.End();
             }
 
