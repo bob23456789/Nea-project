@@ -14,7 +14,7 @@ namespace Nea_project
     {
         Texture2D squareTexture;
         Texture2D menuTexture;
-        double gamestate = 1;
+        double gamestate = 1.5;
         string menuTitle = "War On Perliculum \n Prime";
         string Line = "";
         //int[,,] tilemap = new int[16, 11, 160]; // x,y,type tilemap  

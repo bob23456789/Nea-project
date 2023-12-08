@@ -20,24 +20,44 @@ namespace Nea_project
    class tank
    {
         private int _x; // cords
-        public int x { get { return _x; } }
+        public int X { get { return _x; } }
         private int _y;// y postion 
         public int Y { get { return _y; } }
         private int _armour;// armour value of tank  
-        public int armour { get { return _armour; } }
+        public int Armour { get { return _armour; } }
         private int _acc;// accuracy of tank 
-        public int acc { get { return _acc; } }
+        public int Acc { get { return _acc; } }
         private int _speed;// accuracy of tank 
-        public int speed { get { return _speed; } }
-        private int _attackpower;// accuracy of tank 
-        public int attackpower { get { return _attackpower; } }
+        public int Speed { get { return _speed; } }
+        private int _penpower;
+        public int Penpower { get { return _penpower; } }
+        private bool _apshell;
+        public bool Apshell { get { return apshell; } }
         private int _range;// hwo far the gun can shoot
-        public int range { get { return _range; } }
+        public int Range { get { return _range; } }
         private int _movementactionpoints;// how many movement action it can do 
-        public int movactpoints { get { return _movementactionpoints; } }
+        public int Movactpoints { get { return _movementactionpoints; } }
         private bool _havefired;// how many movement action it can do 
-        public bool havefired { get { return _havefired; } }
-    }
+        public bool Havefired { get { return _havefired; } }
+        public bool[] Components = new bool[5]  // components 1= engine  2= tracks 3=gun 4=turret ring if all destroyed tank is destroyed  tracks can be repaired 
+        public bool[] Crewmembers = new bool[5] // crew 1= driver 2= gunner 3= loader 4= commander commander can switch wiht any loader can switch with gunner
+        public tank (int x, int y,int armour , int acc ,int speed,int penpower,bool apshell,int range,int movepoints,bool havefired ,bool crewmembers[5],bool components[5])
+        {
+            Crewmembers[5] = crewmembers[5];
+            Components[5] = components[5];
+            _x = x;
+            _y = y;
+            _armour = armour;
+            _acc = acc;
+            _speed = speed;
+            _penpower = penpower;
+            _apshell = apshell;
+            _range = range;
+            _movementactionpoints = movepoints;
+            _havefired = havefired;
+        }
+            
+   }
     
     
     class tile //basic class for the tiles 
@@ -52,7 +72,7 @@ namespace Nea_project
 
         private int _movemod;// how ti modifies the movemnt of tanks like -1 or +"
         public int Movemod { get { return _movemod;} }
-
+        private bool[] components  = new bool[]  // components 1= engine  2= 
         private int _defmod;// if the teraain adds defense 
        public int Defmod { get { return _defmod; } }
         private int _accmod;//if it deacrease or increase attack 
