@@ -14,15 +14,15 @@ namespace Nea_project
     {
         Texture2D squareTexture;
         Texture2D menuTexture;
-        double gamestate = 1.5;
-        string menuTitle = "War On Perliculum \n Prime";
+        double gamestate = 1;
+        string menuTitle = "WarOnPerliculumPrime";
         string Line = "";
         //int[,,] tilemap = new int[16, 11, 160]; // x,y,type tilemap  
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private SpriteFont myfontyfont; 
         List<tile> tiles = new List<tile>();
-        //veotr middle point make object thignhere wiht artibute
+         //veotr middle point make object thignhere wiht artibute
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -81,6 +81,7 @@ namespace Nea_project
             if(gamestate == 1)
             {
                 squareTexture = Content.Load<Texture2D>("menuscreen");
+                myfontyfont = Content.Load<SpriteFont>("File");
             }
             
             
