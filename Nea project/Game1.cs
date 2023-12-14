@@ -14,6 +14,8 @@ namespace Nea_project
     {
         Texture2D squareTexture;
         Texture2D menuTexture;
+        private Texture2D buttonTexture;
+        private Rectangle buttonRectangle; // square which teh tecture will be put in 
         double gamestate = 1;
         string menuTitle = "War On Perliculum\n             Prime";
         string Line = "";
@@ -82,9 +84,12 @@ namespace Nea_project
             {
                 squareTexture = Content.Load<Texture2D>("menuscreen");
                 myfontyfont = Content.Load<SpriteFont>("File");
+                buttonTexture = Content.Load<Texture2D>("button");
+                // Set the initial position and size of the button
+                buttonRectangle = new Rectangle(100, 100, buttonTexture.Width, buttonTexture.Height);
             }
-            
-            
+
+
         }
 
         protected override void Update(GameTime gameTime)
