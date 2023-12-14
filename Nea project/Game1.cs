@@ -15,7 +15,7 @@ namespace Nea_project
         Texture2D squareTexture;
         Texture2D menuTexture;
         double gamestate = 1;
-        string menuTitle = "WarOnPerliculumPrime";
+        string menuTitle = "War On Perliculum\n             Prime";
         string Line = "";
         //int[,,] tilemap = new int[16, 11, 160]; // x,y,type tilemap  
         private GraphicsDeviceManager _graphics;
@@ -108,8 +108,8 @@ namespace Nea_project
                 _spriteBatch.Draw(squareTexture, new Vector2(row, col), Color.White);
                 Vector2 textMiddlePoint = myfontyfont.MeasureString(menuTitle) / 2;
                 // Places text in center of the screen
-                Vector2 position = new Vector2(Window.ClientBounds.Width / 2,Window.ClientBounds.Height / 2);
-               _spriteBatch.DrawString(myfontyfont,menuTitle, position, Color.White, 0, textMiddlePoint, 1.0f, SpriteEffects.None, 0.5f);
+                Vector2 position = new Vector2(Window.ClientBounds.Width / 2,Window.ClientBounds.Height / 2 - 50);
+               _spriteBatch.DrawString(myfontyfont,menuTitle, position, Color.AntiqueWhite, 0, textMiddlePoint, 1.5f, SpriteEffects.None, 1.0f);
                 _spriteBatch.End();
             }
 
