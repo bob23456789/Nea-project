@@ -19,6 +19,7 @@ namespace Nea_project
         double gamestate = 1.5;
         string menuTitle = "War On Perliculum\n             Prime";
         string Line = "";
+        char[] stringtochar = new char[16];
         //int[,,] tilemap = new int[16, 11, 160]; // x,y,type tilemap  
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -41,19 +42,22 @@ namespace Nea_project
                 int row = 0;
                 int col = 0;
                 int rcount = 0;// counts the rows for the stream reading 
-                StreamReader read = new StreamReader("tilemap.txt");// reads from basic map text file 
-                string readrow = "";
+                StreamReader reader = new StreamReader("tilemap.txt");// reads from basic map text file 
+                string readrowe = "";
                 char[,] tilemaptype = new char[16, 11];
-                for (int e = 0; e < 11; e++)
+                while (reader != null)
                 {
-                    
-                    readrow = read.ReadLine();//reads text file int
-                    char[] stringtochar = readrow.ToCharArray(); // converts read row into char array
-                    for (int i = 0; i < stringtochar.Length; i++)
+                    for (int e = 0; e < 11; e++)
                     {
-                        tilemaptype[0,rcount] = stringtochar[i];// put chararray into  tilemap typea array 
-                    }
+
+                        readrowe = reader.ReadLine();//reads text file int
+                        stringtochar = readrowe.ToCharArray(); // converts read row into char array
+                        for (int i = 0; i < stringtochar.Length; i++)
+                        {
+                            tilemaptype[0, rcount] = stringtochar[i];// put chararray into  tilemap typea array 
+                        }
                         rcount++;// counts whic row the read is on 
+                    }
                 }
                 // TODO: Add your initialization logic here
                 rcount = 0;
@@ -67,10 +71,10 @@ namespace Nea_project
                         rcount++;
                     }
                 }
-
+                reader.Close();
             }
             base.Initialize();
-
+     
         }
 
         protected override void LoadContent()
