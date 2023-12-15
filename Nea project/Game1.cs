@@ -16,7 +16,7 @@ namespace Nea_project
         Texture2D menuTexture;
         private Texture2D buttonTexture;
         private Rectangle buttonRectangle; // square which teh tecture will be put in 
-        double gamestate = 1;
+        double gamestate = 1.5;
         string menuTitle = "War On Perliculum\n             Prime";
         string Line = "";
         //int[,,] tilemap = new int[16, 11, 160]; // x,y,type tilemap  
@@ -84,9 +84,11 @@ namespace Nea_project
             {
                 squareTexture = Content.Load<Texture2D>("menuscreen");
                 myfontyfont = Content.Load<SpriteFont>("File");
-                buttonTexture = Content.Load<Texture2D>("button");
+                buttonTexture = Content.Load<Texture2D>("playbutton");
                 // Set the initial position and size of the button
-                buttonRectangle = new Rectangle(100, 100, buttonTexture.Width, buttonTexture.Height);
+                Vector2 position = new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 +20);
+
+                buttonRectangle = new Rectangle((int)position.X,(int)position.Y, buttonTexture.Width, buttonTexture.Height);
             }
 
 
@@ -96,8 +98,18 @@ namespace Nea_project
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            // Get the current state of the mouse
+            MouseState mouseState = Mouse.GetState();
 
-           
+            // Check if the left mouse button is pressed and the mouse is over the button
+            if (mouseState.LeftButton == ButtonState.Pressed && buttonRectangle.Contains(mouseState.Position))
+            {
+                gamestate = 1.5;
+            }
+
+            base.Update(gameTime);
+
+
 
             base.Update(gameTime);
         }
@@ -115,6 +127,7 @@ namespace Nea_project
                 // Places text in center of the screen
                 Vector2 position = new Vector2(Window.ClientBounds.Width / 2,Window.ClientBounds.Height / 2 - 50);
                _spriteBatch.DrawString(myfontyfont,menuTitle, position, Color.AntiqueWhite, 0, textMiddlePoint, 1.5f, SpriteEffects.None, 1.0f);
+                _spriteBatch.Draw(buttonTexture, buttonRectangle, Color.White);
                 _spriteBatch.End();
             }
 
