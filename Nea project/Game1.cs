@@ -19,7 +19,8 @@ namespace Nea_project
         double gamestate = 1.5;
         string menuTitle = "War On Perliculum\n             Prime";
         string Line = "";
-        char[] stringtochar = new char[16];
+        char[] stringtochar;
+        char[,] tilemaptype;
         //int[,,] tilemap = new int[16, 11, 160]; // x,y,type tilemap  
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -35,6 +36,7 @@ namespace Nea_project
 
         protected override void Initialize()
         {
+            stringtochar = new char[16];
 
             if (gamestate == 1.5)//if game state i playing game state
             {
@@ -43,33 +45,32 @@ namespace Nea_project
                 int col = 0;
                 int rcount = 0;// counts the rows for the stream reading 
                 StreamReader reader = new StreamReader("tilemap.txt");// reads from basic map text file 
-                string readrowe = "";
+                string readrowe = " ";
                 char[,] tilemaptype = new char[16, 11];
-                while (reader != null)
-                {
-                    for (int e = 0; e < 11; e++)
+                    for (int e = 0; e < 10; e++)
                     {
 
                         readrowe = reader.ReadLine();//reads text file int
-                        stringtochar = readrowe.ToCharArray(); // converts read row into char array
-                        for (int i = 0; i < stringtochar.Length; i++)
+                        Console.WriteLine("reading....");//dont change it works with this 
+                        for (int i = 0; i < readrowe.Length; i++)
                         {
-                            tilemaptype[0, rcount] = stringtochar[i];// put chararray into  tilemap typea array 
+                            tilemaptype[0, rcount] = readrowe[i]; // put chararray into  tilemap typea array 
                         }
                         rcount++;// counts whic row the read is on 
                     }
-                }
+            
                 // TODO: Add your initialization logic here
                 rcount = 0;
-                for (int i = -1; i < 10; i++)
+                for (int i = -1; i < 9; i++)
                 {
-                    for (int j = 0; j < 10; j++)
+                    for (int j = 0; j < 16; j++)
                     {
                         row = i * 55; col = j * 55;
-                        tile newtile = new tile(tilemaptype[rcount,i], 0, 0, 0, row, col);// creates new tile object
+                        tile newtile = new tile(tilemaptype[j,rcount], 0, 0, 0, row, col);// creates new tile object
                         tiles.Add(newtile);// adds it to list 
-                        rcount++;
+                        
                     }
+                    rcount++;
                 }
                 reader.Close();
             }
@@ -146,9 +147,12 @@ namespace Nea_project
                     row = 0;
                     for (int j = 0; j < 15; j++)
                     {
-
-                        _spriteBatch.Draw(squareTexture, new Vector2(row, col), Color.White);
-                        row += 55;
+                        if (tilemaptype[j,i] == '0')
+                        {
+                            _spriteBatch.Draw(squareTexture, new Vector2(row, col), Color.White);
+                            row += 55;
+                        }
+                        
 
                     }
 
