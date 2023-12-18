@@ -14,6 +14,7 @@ namespace Nea_project
     {
         Texture2D squareTexture;
         Texture2D grasssquareTexture;
+        Texture2D treesquaretexture;
         Texture2D menuTexture;
         private Texture2D buttonTexture;
         private Rectangle buttonRectangle; // square which teh tecture will be put in 
@@ -85,6 +86,7 @@ namespace Nea_project
             if(gamestate == 1.5)
             {
                 grasssquareTexture = Content.Load<Texture2D>("grass");//loads grass 
+                treesquaretexture = Content.Load<Texture2D>("tree");// loads tree tile
             }
             if(gamestate == 1)
             {
@@ -152,6 +154,11 @@ namespace Nea_project
                         {
                             _spriteBatch.Draw(grasssquareTexture, new Vector2(row, col), Color.White);
                         }
+                        if (tilemaptype[j, i] == '1')
+                        {
+                            _spriteBatch.Draw(treesquaretexture, new Vector2(row, col), Color.White);
+                        }
+                        
 
                         row += 55;
                     }
