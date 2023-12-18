@@ -13,6 +13,7 @@ namespace Nea_project
     public class Game1 : Game
     {
         Texture2D squareTexture;
+        Texture2D grasssquareTexture;
         Texture2D menuTexture;
         private Texture2D buttonTexture;
         private Rectangle buttonRectangle; // square which teh tecture will be put in 
@@ -83,7 +84,7 @@ namespace Nea_project
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             if(gamestate == 1.5)
             {
-                squareTexture = Content.Load<Texture2D>("grass");//loads grass 
+                grasssquareTexture = Content.Load<Texture2D>("grass");//loads grass 
             }
             if(gamestate == 1)
             {
@@ -149,11 +150,10 @@ namespace Nea_project
                     {
                         if (tilemaptype[j,i] == '0')
                         {
-                            _spriteBatch.Draw(squareTexture, new Vector2(row, col), Color.White);
-                            row += 55;
+                            _spriteBatch.Draw(grasssquareTexture, new Vector2(row, col), Color.White);
                         }
-                        
 
+                        row += 55;
                     }
 
                 }
