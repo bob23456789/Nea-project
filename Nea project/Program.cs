@@ -68,14 +68,17 @@ namespace Nea_project
         public int Y { get { return _y; } }
         private int _type;// what type as in grass foret moutain road
         public int Type { get { return _type; } }
-
+        private int _width;
+        public int Width { get { return _width; } }
+        private int _height;
+        public int Height  { get { return _height; } }
         private int _movemod;// how ti modifies the movemnt of tanks like -1 or +"
         public int Movemod { get { return _movemod;} }
         private int _defmod;// if the teraain adds defense 
        public int Defmod { get { return _defmod; } }
         private int _accmod;//if it deacrease or increase attack 
         public int Accmod { get { return _accmod; } }
-        public tile (int  type, int movemod, int defmod,int ACCmod,int x , int y)//constructure
+        public tile (int  type, int movemod, int defmod,int ACCmod,int x , int y,int width,int height)//constructure
         {
             _type = type;
             _movemod = movemod;
@@ -83,6 +86,8 @@ namespace Nea_project
             _accmod = ACCmod;
             _x = x;
             _y = y;
+            _width = width;
+            _height = height;
         }
        
         

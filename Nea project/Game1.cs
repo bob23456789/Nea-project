@@ -12,6 +12,7 @@ namespace Nea_project
 {
     public class Game1 : Game
     {
+        const int tilesize = 55;
         Texture2D squareTexture;
         Texture2D grasssquareTexture;
         Texture2D treesquaretexture;
@@ -48,7 +49,7 @@ namespace Nea_project
                 int rcount = 0;// counts the rows for the stream reading 
                 StreamReader reader = new StreamReader("tilemap.txt");// reads from basic map text file 
                 string readrowe = " ";
-                char[,] tilemaptype = new char[16, 11];
+                tilemaptype = new char[16, 11];
                     for (int e = 0; e < 10; e++)
                     {
 
@@ -68,7 +69,7 @@ namespace Nea_project
                     for (int j = 0; j < 16; j++)
                     {
                         row = i * 55; col = j * 55;
-                        tile newtile = new tile(tilemaptype[j,rcount], 0, 0, 0, row, col);// creates new tile object
+                        tile newtile = new tile(tilemaptype[j,rcount], 0, 0, 0, row, col,tilesize,tilesize);// creates new tile object
                         tiles.Add(newtile);// adds it to list 
                         
                     }
@@ -141,7 +142,7 @@ namespace Nea_project
 
             if(gamestate == 1.5 )
             {
-               
+                
                 
                 _spriteBatch.Begin();// begins draws  in the srpites 
                 for (int i = 0; i < 10; i++)//gennnerates grass tiles in grid
