@@ -24,6 +24,7 @@ namespace Nea_project
         string Line = "";
         char[] stringtochar;
         char[,] tilemaptype;
+        Camera camera;
         //int[,,] tilemap = new int[16, 11, 160]; // x,y,type tilemap  
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -76,6 +77,11 @@ namespace Nea_project
                     rcount++;
                 }
                 reader.Close();
+                // Set the initial position (adjust as needed)
+                Vector2 initialCameraPosition = new Vector2(210, 210);
+
+                // Create the camera with the initial position
+                camera = new Camera(initialCameraPosition);
             }
             base.Initialize();
      
@@ -99,8 +105,6 @@ namespace Nea_project
 
                 buttonRectangle = new Rectangle((int)position.X,(int)position.Y, buttonTexture.Width, buttonTexture.Height);
             }
-
-
         }
 
         protected override void Update(GameTime gameTime)
@@ -117,16 +121,13 @@ namespace Nea_project
             }
 
             base.Update(gameTime);
-
-
-
-            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
+            camera.ResetToInitialPosition();
             GraphicsDevice.Clear(Color.Black);//creats bit where grpahics goes
-            int col = -55;
+            int col = 0;
             int row = 0;
             if (gamestate == 1)// menu screen  // y = 550 x = 825 area = 453750 pixles 
             {
@@ -151,16 +152,14 @@ namespace Nea_project
                     row = 0;
                     for (int j = 0; j < 15; j++)
                     {
-                        if (tilemaptype[j,i] == '0')
-                        {
-                            _spriteBatch.Draw(grasssquareTexture, new Vector2(row, col), Color.White);
-                        }
-                        if (tilemaptype[j, i] == '1')
-                        {
-                            _spriteBatch.Draw(treesquaretexture, new Vector2(row, col), Color.White);
-                        }
-                        
-
+                        //if (tilemaptype[j,i] == '0')
+                        //{
+                        _spriteBatch.Draw(grasssquareTexture, new Vector2(row, col), Color.White);
+                        //}
+                        //if (tilemaptype[j, i] == '1')
+                        //{
+                        //    _spriteBatch.Draw(treesquaretexture, new Vector2(row, col), Color.White);
+                        //}
                         row += 55;
                     }
 
